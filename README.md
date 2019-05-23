@@ -1,7 +1,7 @@
 
-#Golang sort codes
+# Golang sort codes
 
-###All Test
+### All Test
 ```
 >go test -v
 ```
