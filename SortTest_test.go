@@ -63,6 +63,21 @@ func BubbleSortReCursive(sample []int, last int) []int {
 	return sample
 }
 
+func SelectionSort(sample []int, n int)[]int{
+	for i := 0; i < n; i++ {
+		for j := 0 + i; j < (n-1); j++ {
+			if sample[i] > sample[j+1] {
+				tmp := sample[i]
+				sample[i] = sample[j+1]
+				sample[j+1] = tmp
+			}
+		}
+	}
+
+	return sample
+
+}
+
 func TestFinderMaxNumber(t *testing.T) {
 	var data = []int{12, 78, 50, 11, 10, 20, 50, 20, 77, 99}
 
@@ -76,7 +91,7 @@ func TestBubbleSort(t *testing.T) {
 	var data = []int{12, 78, 50, 11, 10, 20, 50, 20, 77, 1211}
 	//fmt.Print(data)
 
-	sortedData := BubbleSort(data, 9)
+	sortedData := BubbleSort(data, len(data))
 
 	fmt.Printf("TestBubbleSort %d \n", data)
 
@@ -91,6 +106,19 @@ func TestBubbleSortReCursive(t *testing.T) {
 	sortedData := BubbleSortReCursive(data, len(data)-1)
 
 	fmt.Printf("TestBubbleSortReCursive %d \n", data)
+
+	assert.Equal(t, sortedData[0], -1)
+	assert.Equal(t, sortedData[len(sortedData)-1], 11000)
+}
+
+
+func TestSelectionSort(t *testing.T){
+	var data = []int{12, 78, 50, -1, 11, 10, 20, 50, 20, 77, 11000, 111,22,532}
+	//fmt.Print(data)
+
+	sortedData := SelectionSort(data, len(data))
+
+	fmt.Printf("TestSelectionSort %d \n", data)
 
 	assert.Equal(t, sortedData[0], -1)
 	assert.Equal(t, sortedData[len(sortedData)-1], 11000)
