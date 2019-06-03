@@ -75,8 +75,24 @@ func SelectionSort(sample []int, n int)[]int{
 	}
 
 	return sample
-
 }
+
+func InsertionSort(sample []int, n int) []int{
+
+	for i := 1; i < n; i++ {
+		j := i
+		for j > 0 {
+			if sample[j-1] > sample[j] {
+				sample[j-1], sample[j] = sample[j], sample[j-1]
+			}
+			j = j - 1
+		}
+	}
+
+	return sample
+}
+
+
 
 func TestFinderMaxNumber(t *testing.T) {
 	var data = []int{12, 78, 50, 11, 10, 20, 50, 20, 77, 99}
@@ -122,4 +138,18 @@ func TestSelectionSort(t *testing.T){
 
 	assert.Equal(t, sortedData[0], -1)
 	assert.Equal(t, sortedData[len(sortedData)-1], 11000)
+}
+
+func TestInsertionSort(t *testing.T){
+
+	var data = []int{12, 78, 50, -1, 11, 10, 20, 50, 20, 77, 11000, 111,22,532}
+	//fmt.Print(data)
+
+	sortedData := InsertionSort(data, len(data))
+
+	fmt.Printf("TestInsertionSort %d \n", data)
+
+	assert.Equal(t, sortedData[0], -1)
+	assert.Equal(t, sortedData[len(sortedData)-1], 11000)
+
 }
